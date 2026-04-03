@@ -1,0 +1,37 @@
+# Frontend
+frontend/node_modules/
+frontend/.env.local
+frontend/.env.*.local
+frontend/dist/
+frontend/build/
+
+# Backend
+backend/bin/
+backend/*.env
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
+
+# Environment
+.env
+.env.local
+
+# Database
+*.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
