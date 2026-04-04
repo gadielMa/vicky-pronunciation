@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { AuthCard } from '../../components/auth/AuthCard'
 import { formStyles as s } from '../../components/auth/formStyles'
 import { useAuth } from '../../context/AuthContext'
+import { apiUrl } from '../../lib/api'
 
 export function LoginPage() {
   const navigate = useNavigate()
@@ -21,7 +22,7 @@ export function LoginPage() {
     setLoading(true)
 
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(apiUrl('/api/auth/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

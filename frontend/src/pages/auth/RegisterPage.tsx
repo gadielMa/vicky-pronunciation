@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { AuthCard } from '../../components/auth/AuthCard'
 import { formStyles as s } from '../../components/auth/formStyles'
+import { apiUrl } from '../../lib/api'
 
 export function RegisterPage() {
   const navigate = useNavigate()
@@ -26,7 +27,7 @@ export function RegisterPage() {
     setLoading(true)
 
     try {
-      const res = await fetch('/api/auth/register', {
+      const res = await fetch(apiUrl('/api/auth/register'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

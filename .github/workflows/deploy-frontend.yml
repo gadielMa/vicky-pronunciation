@@ -31,6 +31,7 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: 'true'
+          VITE_API_URL: 'https://vicky-pronunciation.onrender.com'
 
       - name: Copy index.html as 404.html for SPA routing
         run: cp frontend/dist/index.html frontend/dist/404.html

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthCard } from '../../components/auth/AuthCard'
 import { formStyles as s } from '../../components/auth/formStyles'
+import { apiUrl } from '../../lib/api'
 
 export function ForgotPasswordPage() {
   const [email, setEmail] = useState('')
@@ -16,7 +17,7 @@ export function ForgotPasswordPage() {
     setLoading(true)
 
     try {
-      const res = await fetch('/api/auth/forgot-password', {
+      const res = await fetch(apiUrl('/api/auth/forgot-password'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),

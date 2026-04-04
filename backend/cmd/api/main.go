@@ -76,11 +76,19 @@ func main() {
 	}
 }
 
-// withCORS wraps a handler to add CORS headers that allow the frontend
-// development server at http://localhost:5173 to make cross-origin requests.
+// allowedOrigins is the set of origins permitted to make cross-origin requests.
+var allowedOrigins = map[string]bool{
+	"http://localhost:5173":       true,
+	"https://gadielma.github.io": true,
+}
+
+// withCORS wraps a handler to add CORS headers for allowed origins.
 func withCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
+		origin := r.Header.Get("Origin")
+		if allowedOrigins[origin] {
+			w.Header().Set("Access-Control-Allow-Origin", origin)
+		}
 		w.Header().Set("Access-Control-Allow-Methods",
 			"GET, POST, PUT, DELETE, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers",
