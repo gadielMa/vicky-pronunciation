@@ -1,6 +1,8 @@
 import { Header } from "@/components/platform/header";
 import { Sidebar } from "@/components/platform/sidebar";
 
+export const dynamic = "force-dynamic";
+
 export default function PlatformLayout({
   children,
 }: {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
-import { stripe } from "@/lib/stripe/client";
+import { getStripe } from "@/lib/stripe/client";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type Stripe from "stripe";
 
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(
+    event = getStripe().webhooks.constructEvent(
       body,
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
         .eq("id", userId);
 
       // Fetch subscription details from Stripe
-      const sub = await stripe.subscriptions.retrieve(subscriptionId);
+      const sub = await getStripe().subscriptions.retrieve(subscriptionId);
       const subData = sub as unknown as Record<string, unknown>;
       const periodStart = subData.current_period_start as number;
       const periodEnd = subData.current_period_end as number;
