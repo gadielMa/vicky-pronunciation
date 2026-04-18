@@ -25,7 +25,11 @@ export function ContentCard({
         <div className="relative aspect-video bg-gray-100">
           {content.thumbnail_url ? (
             <img
-              src={content.thumbnail_url}
+              src={
+                content.thumbnail_url.startsWith("http")
+                  ? content.thumbnail_url
+                  : `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${content.thumbnail_url}`
+              }
               alt={content.title}
               className="h-full w-full object-cover"
             />
