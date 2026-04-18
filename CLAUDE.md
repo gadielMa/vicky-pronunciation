@@ -15,14 +15,15 @@ contenido.
 
 ## Stack
 
-| Capa       | Tecnología                          |
-|------------|-------------------------------------|
-| Frontend   | Next.js 15 (App Router), React 19   |
-| UI         | shadcn/ui, Tailwind CSS, Lucide      |
-| Auth & DB  | Supabase (PostgreSQL + RLS)          |
-| Storage    | Supabase Storage (6 buckets)         |
-| Pagos      | Stripe (checkout + webhooks)         |
-| Deploy     | Vercel                               |
+| Capa       | Tecnología                                   |
+|------------|----------------------------------------------|
+| Frontend   | Next.js 16.2.2 (App Router + Turbopack), React 19.2 |
+| UI         | shadcn/ui, Tailwind CSS v4, Lucide           |
+| Auth & DB  | Supabase (PostgreSQL + RLS)                  |
+| Storage    | Supabase Storage (6 buckets)                 |
+| Pagos      | Stripe 21.x (checkout + webhooks)            |
+| Deploy     | Render (Docker, `output: "standalone"`)      |
+| MCP        | Supabase MCP en `.mcp.json` (project scope)  |
 
 ## Comandos
 
@@ -118,6 +119,8 @@ Las migrations están en `supabase/migrations/`. Se corren en orden:
 | `00004_create_subscriptions.sql`       | Tabla `subscriptions`, enum `subscription_status` |
 | `00005_rls_policies.sql`               | Row Level Security para todas las tablas       |
 | `00006_create_storage_buckets.sql`     | 6 buckets: videos, audio, documents, downloads, thumbnails, public-assets |
+| `00007_fix_rls_recursion.sql`          | Función `public.is_admin()` SECURITY DEFINER para romper recursión infinita en policies de admin |
+| `00008_seed_sections_categories.sql`   | Seeds de 2 secciones (adults/families) + 11 categorías iniciales |
 
 **Roles de usuario:** `user` (suscriptor) o `admin` (Vicky).
 
@@ -156,18 +159,25 @@ type ContentType =
 ## Setup inicial (primera vez)
 
 1. Crear proyecto en [supabase.com](https://supabase.com) → copiar URL y keys
-2. Correr migrations: ir a Supabase → SQL Editor → ejecutar cada archivo en orden
+2. Correr migrations 00001-00008 en orden (Supabase → SQL Editor)
 3. Crear cuenta en [stripe.com](https://stripe.com)
 4. Crear 2 products en Stripe: mensual y anual → copiar price IDs
-5. Completar `.env.local`
+5. Completar `.env.local` (ver "Variables de entorno")
 6. `npm run dev`
-7. Registrarse con un email → ir a Supabase → tabla `profiles` → cambiar `role` a `admin`
-8. Configurar webhook de Stripe apuntando a `<url>/api/webhooks/stripe`
+7. Registrarse con un email → Supabase → `profiles` → cambiar `role = 'admin'`
+8. Para webhooks locales: `stripe listen --forward-to localhost:3000/api/webhooks/stripe` y copiar el `whsec_...` a `STRIPE_WEBHOOK_SECRET`
+
+## Deploy (Render)
+
+- Tipo: Web Service, Docker, región Oregon.
+- Build: el `Dockerfile` usa multi-stage (deps → builder → runner) con Next standalone output.
+- **Crítico**: el `.npmrc` del proyecto fuerza `registry=https://registry.npmjs.org/`. Sin esto, Render falla en `npm ci` con 403 porque el `~/.npmrc` global de MeLi apunta a Fury (`npm.artifacts.furycloud.io`) y el runner de Render no tiene credenciales. Si regenerás `package-lock.json` localmente, siempre usar `npm install --registry=https://registry.npmjs.org/`.
+- Env vars requeridas en Render (las mismas de `.env.local`, excepto `NEXT_PUBLIC_APP_URL` que apunta al dominio público).
+- Puerto: Render inyecta `PORT` como env var; el Dockerfile expone 3000 pero Next standalone lee `process.env.PORT` en runtime.
+- Webhook de Stripe producción: crear endpoint en Stripe Dashboard apuntando a `https://<dominio-render>/api/webhooks/stripe` y usar el `whsec_` de **ese** endpoint (distinto al local).
 
 ## Issues conocidos
 
-- `use-user.ts` y `use-subscription.ts`: `createClient()` se llama dentro del
-  componente sin memoización, lo que puede generar múltiples instancias. No es
-  crítico para MVP pero conviene memoizar con `useMemo`.
-- El webhook de Stripe requiere HTTPS; en local usar `stripe listen --forward-to
-  localhost:3000/api/webhooks/stripe` con el CLI de Stripe.
+- `use-user.ts` y `use-subscription.ts`: `createClient()` se llama dentro del componente sin memoización, puede generar múltiples instancias. No crítico para MVP.
+- `src/app/admin/layout.tsx` **no valida role server-side** — cualquier usuario autenticado accede al shell de `/admin`. Las API routes sí validan, así que no hay escape real, pero hay que cerrar el gap con un check en el layout que redirija a `/dashboard` si `profile.role !== 'admin'`.
+- Webhook de Stripe requiere HTTPS en producción; en local usar Stripe CLI.
