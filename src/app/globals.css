@@ -4,6 +4,74 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-elsur-purple: #ac80f1;
+  --color-elsur-purple-dark: #7a4fc4;
+  --color-elsur-purple-light: #ede0fd;
+  --color-elsur-purple-darkest: #3d2570;
+  --color-elsur-mint: #84dccf;
+  --color-elsur-mint-dark: #3aada0;
+  --color-elsur-mint-light: #d4f3ee;
+  --color-elsur-mint-darkest: #1a5c56;
+  --color-elsur-blush: #ffdbda;
+  --color-elsur-blush-dark: #c97070;
+  --color-elsur-cream: #f9f4f5;
+  --color-elsur-navy: #474350;
+  --color-elsur-navy-light: #6b6678;
+  --font-nunito: "Nunito", system-ui, sans-serif;
+
+  --animate-soft-fade: soft-fade 0.35s ease-out;
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-breathe: breathe 4s ease-in-out infinite;
+  --animate-pop: pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-twinkle: twinkle 1.6s ease-in-out infinite;
+
+  @keyframes soft-fade {
+    0% {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  @keyframes breathe {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.08);
+    }
+  }
+  @keyframes pop {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes twinkle {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+    }
+    50% {
+      transform: scale(1.15) rotate(6deg);
+    }
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -49,6 +117,20 @@
 }
 
 :root {
+  --purple: #ac80f1;
+  --purple-dark: #7a4fc4;
+  --purple-darkest: #3d2570;
+  --purple-light: #ede0fd;
+  --mint: #84dccf;
+  --mint-dark: #3aada0;
+  --mint-darkest: #1a5c56;
+  --mint-light: #d4f3ee;
+  --blush: #ffdbda;
+  --blush-dark: #c97070;
+  --cream: #f9f4f5;
+  --navy: #474350;
+  --navy-light: #6b6678;
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
