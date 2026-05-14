@@ -1,0 +1,34 @@
+src/app/page.tsx
+  s_6d916488d06c3f::t_28d9fe99c4fad6 424
+  s_6d916488d06c3f::t_aca32becf4332d 1-14,18-242,244-248,250-251,253-257,259-304,306-349,351-362,364-423,425-452,454-510,512-608,612-631
+.gitignore
+  s_6d916488d06c3f::t_7848655a6b7cfc 49-51
+src/app/lessons/saludos-argentinos/page.tsx
+  s_6d916488d06c3f::t_5ec4c0ed30c605 1-17
+next.config.ts
+  s_6d916488d06c3f::t_2f34369660d985 2,6-8
+src/app/layout.tsx
+  s_6d916488d06c3f::t_800e96bfd2e953 36
+  s_6d916488d06c3f::t_10ae44b1dacc0b 2,16-19
+src/app/globals.css
+  s_6d916488d06c3f::t_fddf85df592a6e 120-133
+  s_6d916488d06c3f::t_75bbf8b5cd37d1 7-73
+src/app/lessons/saludos-argentinos/lesson-experience.tsx
+  s_6d916488d06c3f::t_fddb970392ed68 1-568
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "e17b594422fcfaf374cc12111fe15a6ff8087555",
+  "prompts": {},
+  "sessions": {
+    "s_6d916488d06c3f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "26169703-b062-4726-b170-807c767b6135",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "gadielMa <gadiel.malagrino@mercadolibre.com>"
+    }
+  }
+}
