@@ -46,3 +46,6 @@ next-env.d.ts
 .junie/
 .windsurf/
 skills-lock.json
+
+# Design references (local only)
+.design-refs/
