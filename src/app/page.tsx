@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SiteFooter, SiteHeader } from "@/components/landing/site-chrome";
 import { ArrowRight, BookOpenText, Check, ChevronRight, Coffee, MessageCircle, Mic, PenLine, Sparkles, UsersRound } from "lucide-react";
 
@@ -10,7 +11,7 @@ const offerings = [
 ];
 
 export default function HomePage() {
-  return <main className="min-h-screen bg-[#fffdfb] text-[var(--navy)]" style={{ fontFamily: "system-ui, sans-serif" }}><Nav /><Hero /><Offerings /><Writing /><FamilyApp /><Sobremesa /><HowItWorks /><Closing /><Footer /></main>;
+  return <main className="min-h-screen bg-[#fffdfb] text-[var(--navy)]" style={{ fontFamily: "system-ui, sans-serif" }}><Nav /><Hero /><Offerings /><HowItWorks /><Writing /><FamilyApp /><Sobremesa /><Closing /><Footer /></main>;
 }
 
 function Nav() {
@@ -36,7 +37,24 @@ function Offerings() {
 }
 
 function Writing() {
-  return <section className="bg-[var(--navy)] px-5 py-20 text-white md:px-10 md:py-28"><div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]"><div><div className="flex size-12 items-center justify-center rounded-2xl bg-[var(--purple)] text-[var(--purple-darkest)]"><PenLine className="size-6" aria-hidden /></div><p className="mt-7 text-sm font-bold uppercase tracking-[0.16em] text-[var(--mint)]">Also: creative writing</p><h2 className="mt-3 text-4xl font-black leading-none tracking-[-0.055em] md:text-5xl">Write to say something, not just to conjugate.</h2></div><div className="grid gap-4 sm:grid-cols-2"><div className="rounded-[1.5rem] bg-white/10 p-6 ring-1 ring-white/10"><p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--mint)]">Intermediate</p><h3 className="mt-3 text-2xl font-extrabold tracking-[-0.04em]">Find your voice.</h3><p className="mt-4 text-sm leading-relaxed text-white/70">Short pieces, guided prompts and thoughtful feedback to start writing freely in Spanish.</p></div><div className="rounded-[1.5rem] bg-[var(--purple-dark)] p-6"><p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--mint)]">Advanced</p><h3 className="mt-3 text-2xl font-extrabold tracking-[-0.04em]">Write for readers.</h3><p className="mt-4 text-sm leading-relaxed text-white/80">Sessions with native Spanish speakers: longer pieces, real critique and a reading that goes beyond your errors.</p></div></div></div></section>;
+  return (
+    <section className="bg-[var(--navy)] px-5 py-20 text-white md:px-10 md:py-28">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[0.72fr_0.7fr_1fr]">
+        <div>
+          <div className="flex size-12 items-center justify-center rounded-2xl bg-[var(--purple)] text-[var(--purple-darkest)]"><PenLine className="size-6" aria-hidden /></div>
+          <p className="mt-7 text-sm font-bold uppercase tracking-[0.16em] text-[var(--mint)]">Also: creative writing</p>
+          <h2 className="mt-3 text-4xl font-black leading-none tracking-[-0.055em] md:text-5xl">Write to say something, not just to conjugate.</h2>
+        </div>
+        <div className="relative min-h-80 overflow-hidden rounded-[1.75rem] ring-1 ring-white/15">
+          <Image src="/images/creative-writing-books.png" alt="Books, a notebook and a fountain pen ready for creative writing" fill sizes="(max-width: 1024px) 100vw, 28vw" className="object-cover" />
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+          <div className="rounded-[1.5rem] bg-white/10 p-6 ring-1 ring-white/10"><p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--mint)]">Intermediate</p><h3 className="mt-3 text-2xl font-extrabold tracking-[-0.04em]">Find your voice.</h3><p className="mt-4 text-sm leading-relaxed text-white/70">Short pieces, guided prompts and thoughtful feedback to start writing freely in Spanish.</p></div>
+          <div className="rounded-[1.5rem] bg-[var(--purple-dark)] p-6"><p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--mint)]">Advanced</p><h3 className="mt-3 text-2xl font-extrabold tracking-[-0.04em]">Write for readers.</h3><p className="mt-4 text-sm leading-relaxed text-white/80">Sessions with native Spanish speakers: longer pieces, real critique and a reading that goes beyond your errors.</p></div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function FamilyApp() {
@@ -49,11 +67,11 @@ function Sobremesa() {
 
 function HowItWorks() {
   const steps = [["01", "Tell Victoria where you are", "Your level, your goals and how much room Spanish has in your week."], ["02", "Choose the format", "A group class, a workshop, in-person practice or WhatsApp voice notes."], ["03", "Start using it", "With a format that challenges you while fitting your real life."]];
-  return <section className="bg-white px-5 py-20 md:px-10 md:py-28"><div className="mx-auto max-w-6xl"><p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--purple-dark)]">Simple and personal</p><h2 className="mt-3 max-w-2xl text-4xl font-black tracking-[-0.055em] text-[var(--navy)] md:text-5xl">You don't need to fit into a generic course.</h2><div className="mt-12 grid gap-7 md:grid-cols-3">{steps.map(([number, title, description]) => <div key={number} className="border-t-2 border-[var(--mint)] pt-5"><span className="text-sm font-black text-[var(--mint-darkest)]">{number}</span><h3 className="mt-4 text-xl font-extrabold tracking-[-0.03em] text-[var(--navy)]">{title}</h3><p className="mt-2 text-sm leading-relaxed text-[var(--navy-light)]">{description}</p></div>)}</div></div></section>;
+  return <section className="bg-white px-5 py-20 md:px-10 md:py-28"><div className="mx-auto max-w-6xl"><div className="grid items-end gap-8 lg:grid-cols-[1fr_0.85fr]"><div><p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--purple-dark)]">Simple and personal</p><h2 className="mt-3 max-w-2xl text-4xl font-black tracking-[-0.055em] text-[var(--navy)] md:text-5xl">You don't need to fit into a generic course.</h2></div><div className="relative aspect-[16/7] overflow-hidden rounded-[1.5rem]"><Image src="/images/victoria-gadiel-yoel-paris.png" alt="Victoria, Gadiel and Yoel together in Paris" fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover object-center" /></div></div><div className="mt-12 grid gap-7 md:grid-cols-3">{steps.map(([number, title, description]) => <div key={number} className="border-t-2 border-[var(--mint)] pt-5"><span className="text-sm font-black text-[var(--mint-darkest)]">{number}</span><h3 className="mt-4 text-xl font-extrabold tracking-[-0.03em] text-[var(--navy)]">{title}</h3><p className="mt-2 text-sm leading-relaxed text-[var(--navy-light)]">{description}</p></div>)}</div></div></section>;
 }
 
 function Closing() {
-  return <section id="contact" className="bg-[var(--purple-darkest)] px-5 py-20 text-center text-white md:px-10 md:py-28"><MessageCircle className="mx-auto size-7 text-[var(--mint)]" aria-hidden /><h2 className="mx-auto mt-5 max-w-3xl text-4xl font-black leading-[1.02] tracking-[-0.055em] md:text-6xl">Let Spanish become something you use, not just something you study.</h2><p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/75">Create an account to hear about upcoming groups, workshops and available formats with Victoria.</p><Link href="/register" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[var(--mint)] px-6 py-3.5 text-sm font-extrabold text-[var(--mint-darkest)] transition hover:bg-white">Create an account to begin <ArrowRight className="size-4" aria-hidden /></Link><p className="mt-4 text-xs text-white/50">The family learning app remains available for existing members.</p></section>;
+  return <section id="contact" className="bg-[var(--purple-darkest)] px-5 py-20 text-white md:px-10 md:py-28"><div className="mx-auto grid max-w-5xl items-center gap-10 text-center md:grid-cols-[0.72fr_1.28fr] md:text-left"><div className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-[2rem] ring-1 ring-white/20"><Image src="/images/victoria-portrait.png" alt="Victoria, your Argentine Spanish teacher" fill sizes="(max-width: 768px) 80vw, 26vw" className="object-cover" /></div><div><MessageCircle className="mx-auto size-7 text-[var(--mint)] md:mx-0" aria-hidden /><h2 className="mt-5 text-4xl font-black leading-[1.02] tracking-[-0.055em] md:text-6xl">Let Spanish become something you use, not just something you study.</h2><p className="mt-6 max-w-xl text-base leading-relaxed text-white/75">Create an account to hear about upcoming groups, workshops and available formats with Victoria.</p><Link href="/register" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[var(--mint)] px-6 py-3.5 text-sm font-extrabold text-[var(--mint-darkest)] transition hover:bg-white">Create an account to begin <ArrowRight className="size-4" aria-hidden /></Link><p className="mt-4 text-xs text-white/50">The family learning app remains available for existing members.</p></div></div></section>;
 }
 
 function Footer() {

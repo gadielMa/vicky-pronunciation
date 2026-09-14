@@ -1,5 +1,6 @@
 import { Header } from "@/components/platform/header";
 import { Sidebar } from "@/components/platform/sidebar";
+import { SiteFooter } from "@/components/landing/site-chrome";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +16,7 @@ export default function PlatformLayout({
         <Sidebar />
         <main className="flex-1 p-6">{children}</main>
       </div>
+      <SiteFooter />
     </div>
   );
 }

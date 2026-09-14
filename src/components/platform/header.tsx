@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { useUser } from "@/hooks/use-user";
 import { Button } from "@/components/ui/button";
+import { SiteHeader } from "@/components/landing/site-chrome";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,12 +26,8 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-white">
-      <div className="flex h-16 items-center justify-between px-6">
-        <Link href="/" className="text-xl font-bold text-gray-900">
-          elSur <span className="text-sm font-semibold text-[var(--purple-dark)]">with Victoria</span>
-        </Link>
-
+    <SiteHeader
+      account={
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="gap-2">
@@ -59,7 +55,7 @@ export function Header() {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
-    </header>
+      }
+    />
   );
 }
