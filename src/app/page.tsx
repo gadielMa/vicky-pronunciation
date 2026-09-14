@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { SiteFooter, SiteHeader } from "@/components/landing/site-chrome";
 import { ArrowRight, BookOpenText, Check, ChevronRight, Coffee, MessageCircle, Mic, PenLine, Sparkles, UsersRound } from "lucide-react";
 
 const offerings = [
   { number: "01", icon: UsersRound, title: "Group classes", eyebrow: "Intermediate · Advanced", hook: "A place to speak, think and hold your own in Spanish.", body: "Small, live groups where you use Spanish for real: talk, debate, ask questions and build confidence alongside learners at your level.", details: ["Live online sessions in small groups", "Intermediate and advanced levels", "Real conversation with guidance and feedback"], color: "var(--purple-light)", accent: "var(--purple-dark)" },
-  { number: "02", icon: Coffee, title: "Your Practice Partner", eyebrow: "Coffee · Walks · Buenos Aires", hook: "Spanish doesn't have to happen in a classroom.", body: "Book a couple of hours with Victoria outside the lesson: a coffee, a walk, or a plan that gets you off-screen. No syllabus, no pressure—just real conversation at your pace.", details: ["In-person sessions in Buenos Aires", "Coffee, walks or an activity you choose together", "Use Spanish in real-life situations"], color: "var(--mint-light)", accent: "var(--mint-darkest)" },
+  { number: "02", icon: Coffee, title: "Your Practice Partner", eyebrow: "Coffee · Walks · London", hook: "Spanish doesn't have to happen in a classroom.", body: "Book a couple of hours with Victoria outside the lesson: a coffee, a walk, or a plan that gets you off-screen. No syllabus, no pressure—just real conversation at your pace.", details: ["In-person sessions in London", "Coffee, walks or an activity you choose together", "Use Spanish in real-life situations"], color: "var(--mint-light)", accent: "var(--mint-darkest)" },
   { number: "03", icon: Mic, title: "Voice Note Coaching", eyebrow: "WhatsApp · Throughout your week", hook: "Practise on your own time. Get human feedback.", body: "Send Victoria a voice note whenever Spanish comes up in your week. She'll reply with feedback on pronunciation, rhythm and vocabulary, plus a model recording to repeat after.", details: ["Personal feedback on WhatsApp", "Pronunciation, accent and expression", "A weekly recap of your learning patterns"], color: "var(--blush)", accent: "var(--blush-dark)" },
   { number: "04", icon: BookOpenText, title: "Grammar workshops", eyebrow: "Subjunctive · Past simple", hook: "The two topics everyone asks for, explained to be used.", body: "Short videos and hands-on practice to understand the logic behind the tenses. Less memorising lists, more real examples until using them feels natural.", details: ["Focused, accessible workshops", "Subjunctive and past simple", "Everyday examples, not isolated drills"], color: "var(--cream)", accent: "var(--navy)" },
 ];
@@ -13,10 +14,7 @@ export default function HomePage() {
 }
 
 function Nav() {
-  return <nav className="sticky top-0 z-50 flex h-16 items-center justify-between border-b border-[rgba(71,67,80,0.1)] bg-[#fffdfb]/95 px-5 backdrop-blur md:px-10">
-    <Link href="/" className="text-lg font-extrabold tracking-[-0.04em] text-[var(--navy)]">el<span className="text-[var(--purple-dark)]">Sur</span><span className="ml-2 text-xs font-semibold tracking-normal text-[var(--navy-light)]">with Victoria</span></Link>
-    <div className="flex items-center gap-4"><a href="#sessions" className="hidden text-sm font-semibold text-[var(--navy-light)] transition hover:text-[var(--purple-dark)] sm:block">Offerings</a><a href="#family-app" className="hidden text-sm font-semibold text-[var(--navy-light)] transition hover:text-[var(--purple-dark)] md:block">The app</a><Link href="/login" className="hidden text-sm font-semibold text-[var(--navy-light)] transition hover:text-[var(--purple-dark)] lg:block">Sign in</Link><a href="#contact" className="rounded-full bg-[var(--purple-dark)] px-4 py-2 text-sm font-bold text-white transition hover:bg-[var(--purple-darkest)]">Ask about availability</a></div>
-  </nav>;
+  return <SiteHeader />;
 }
 
 function Hero() {
@@ -27,7 +25,7 @@ function Hero() {
       <h1 className="max-w-3xl text-5xl font-black leading-[0.98] tracking-[-0.06em] text-[var(--navy)] md:text-7xl">Make Spanish part of your life.</h1>
       <p className="mt-7 max-w-xl text-lg leading-relaxed text-[var(--navy-light)] md:text-xl">Classes, practice and workshops for learners who already have something to say—and want to say it with more ease, precision and their own voice.</p>
       <div className="mt-9 flex flex-wrap gap-3"><a href="#sessions" className="inline-flex items-center gap-2 rounded-full bg-[var(--purple-dark)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--purple-darkest)]">Explore the offerings <ArrowRight className="size-4" aria-hidden /></a><a href="#contact" className="rounded-full border border-[rgba(71,67,80,0.18)] bg-white px-6 py-3.5 text-sm font-bold text-[var(--navy)] transition hover:border-[var(--purple)]">Find my format</a></div>
-    </div><div className="rounded-[2rem] border border-white/80 bg-white/80 p-7 shadow-[0_18px_70px_rgba(61,37,112,0.12)] backdrop-blur md:p-8"><div className="text-sm font-bold text-[var(--purple-dark)]">This isn't an app that corrects you.</div><p className="mt-3 text-2xl font-extrabold leading-tight tracking-[-0.04em] text-[var(--navy)]">It's a teacher who knows your voice, listens closely and nudges you a little further.</p><div className="mt-7 border-t border-[rgba(71,67,80,0.1)] pt-5 text-sm leading-relaxed text-[var(--navy-light)]">Online from anywhere, in person in Buenos Aires, and on WhatsApp throughout your week.</div></div></div></div>
+    </div><div className="rounded-[2rem] border border-white/80 bg-white/80 p-7 shadow-[0_18px_70px_rgba(61,37,112,0.12)] backdrop-blur md:p-8"><div className="text-sm font-bold text-[var(--purple-dark)]">This isn't an app that corrects you.</div><p className="mt-3 text-2xl font-extrabold leading-tight tracking-[-0.04em] text-[var(--navy)]">It's a teacher who knows your voice, listens closely and nudges you a little further.</p><div className="mt-7 border-t border-[rgba(71,67,80,0.1)] pt-5 text-sm leading-relaxed text-[var(--navy-light)]">Online from anywhere, in person in London, and on WhatsApp throughout your week.</div></div></div></div>
   </section>;
 }
 
@@ -59,5 +57,5 @@ function Closing() {
 }
 
 function Footer() {
-  return <footer className="flex flex-col justify-between gap-4 bg-[var(--navy)] px-5 py-7 text-sm text-white/60 md:flex-row md:px-10"><p><span className="font-extrabold text-white">elSur</span> with Victoria</p><div className="flex gap-5"><Link href="/login" className="transition hover:text-white">Sign in</Link><Link href="/families" className="transition hover:text-white">Family learning app</Link></div></footer>;
+  return <SiteFooter />;
 }

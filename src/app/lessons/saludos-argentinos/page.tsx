@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LessonExperience } from "./lesson-experience";
+import { SiteFooter, SiteHeader } from "@/components/landing/site-chrome";
 
 export const metadata: Metadata = {
   title: "Saludos Argentinos — Vicky Pronunciation",
@@ -13,5 +14,5 @@ export const metadata: Metadata = {
 };
 
 export default function SaludosArgentinosPage() {
-  return <LessonExperience />;
+  return <><SiteHeader /><LessonExperience /><SiteFooter /></>;
 }

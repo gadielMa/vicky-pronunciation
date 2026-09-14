@@ -52,11 +52,11 @@ export function AdminSidebar() {
       </nav>
       <div className="mt-auto border-t border-gray-800 p-3">
         <Link
-          href="/dashboard"
+          href="/"
           className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-gray-400 hover:bg-gray-800 hover:text-white"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to platform
+          Back to elSur
         </Link>
       </div>
     </aside>
