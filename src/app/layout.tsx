@@ -20,9 +20,9 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Vicky Pronunciation",
+  title: "elSur with Victoria | Argentine Spanish",
   description:
-    "Learn Argentine Spanish and culture. Two sections: Live Argentina for adults and Grow Bilingual for families.",
+    "Argentine Spanish classes, practice and workshops with Victoria.",
 };
 
 export default function RootLayout({
@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-GB"
       className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
