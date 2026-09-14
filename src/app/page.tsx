@@ -11,7 +11,7 @@ const offerings = [
 ];
 
 export default function HomePage() {
-  return <main className="min-h-screen bg-[#fffdfb] text-[var(--navy)]" style={{ fontFamily: "system-ui, sans-serif" }}><Nav /><Hero /><Offerings /><HowItWorks /><Writing /><FamilyApp /><Sobremesa /><Closing /><Footer /></main>;
+  return <main className="min-h-screen bg-[#fffdfb] text-[var(--navy)]"><Nav /><Hero /><Offerings /><HowItWorks /><Writing /><FamilyApp /><Sobremesa /><Closing /><Footer /></main>;
 }
 
 function Nav() {
